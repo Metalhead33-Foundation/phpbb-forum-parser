@@ -1,0 +1,13 @@
+{
+  "name": "web-parser",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "got": "^10.7.0"
+  }
+}

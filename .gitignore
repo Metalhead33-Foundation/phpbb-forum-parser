@@ -1,0 +1,6 @@
+output
+node_modules
+*-old.*
+*.html
+*.xml
+*.txt
