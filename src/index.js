@@ -57,13 +57,24 @@ async function fetchTopic(destination) {
 
     $(".forumline > tbody > tr.post").each((idx,elem) => {
         result.push({
-            name: $(elem).find("span.name").text(),
-            content: $(elem).find("div.postbody > div").html(),
-            date: $(elem).find("table > tbody > tr > td > span.postdetails").contents().filter(function(){return this.nodeType === 3}).last().text(),
+            name: $(elem).find("span.name").text().trim(),
+            content: $(elem).find("div.postbody > div").html().trim(),
+            date: $(elem).find("table > tbody > tr > td > span.postdetails").contents().filter(function(){return this.nodeType === 3}).last().text().trim(),
         })
     });
+    let processedResult = [];
+    for (var i = 0; i < result.length; i++) {
+        const processedIndex = processedResult.length - 1;
+        if(i == 0) {
+            processedResult.push(result[i]);
+        } else if(processedResult[processedIndex].name === result[i].name) {
+            processedResult[processedIndex].content = processedResult[processedIndex].content + '<br>\n' + result[i].content;
+        } else {
+            processedResult.push(result[i]);
+        }
+    }
 
-    fs.writeFile("output/"+destination.substring(1)+".txt", result.map(({name,content,date}) => {
+    fs.writeFile("output/"+destination.substring(1)+".txt", processedResult.map(({name,content,date}) => {
             return (
                 `{{RPG Post/${name}
 |date=${date}
