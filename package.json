@@ -2,12 +2,19 @@
   "name": "web-parser",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "commonjs",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
     "start": "node src/index.js"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "got": "^10.7.0"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.31",
+    "@types/node": "^20.2.5",
+    "typescript": "^5.0.4"
   }
 }
